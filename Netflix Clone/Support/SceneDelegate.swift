@@ -16,9 +16,51 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.rootViewController = createTabBar()
+        window?.makeKeyAndVisible()
+        
+        configureNavigationBar()
     }
 
+    func createTabBar() -> UITabBarController {
+        let tabBar            = UITabBarController()
+        UITabBar.appearance().tintColor = .systemRed
+        tabBar.viewControllers = [createHomeNC(), createUpcomingNC(), createSearchNC(), createDownloadsNC()]
+        return tabBar
+    }
+
+    func createHomeNC() -> UINavigationController {
+        let homeVC = HomeVC()
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
+        return UINavigationController(rootViewController: homeVC)
+    }
+
+    func createUpcomingNC() -> UINavigationController {
+        let upcomingVC = UpcomingVC()
+        upcomingVC.tabBarItem = UITabBarItem(title: "Coming", image: UIImage(systemName: "play.circle"), selectedImage: UIImage(systemName: "play.circle"))
+        return UINavigationController(rootViewController: upcomingVC)
+    }
+
+    func createSearchNC() -> UINavigationController {
+        let searchVC = SearchVC()
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        return UINavigationController(rootViewController: searchVC)
+    }
+
+    func createDownloadsNC() -> UINavigationController {
+        let downloadVC = DownloadsVC()
+        downloadVC.tabBarItem = UITabBarItem(title: "Download", image: UIImage(systemName: "arrow.down.to.line.circle"), selectedImage: UIImage(systemName: "arrow.down.to.line.circle"))
+        return UINavigationController(rootViewController: downloadVC)
+    }
+
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .label
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

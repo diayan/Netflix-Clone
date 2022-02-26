@@ -9,7 +9,7 @@ import UIKit
 
 class HomeVC: UIViewController {
 
-    let sectionTitles: [String] = ["Trending Movies", "Popular", "Trending TV", "Upcoming Movies", "Top rated"]
+    let sectionTitles: [String] = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     
     private lazy var homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,6 +31,7 @@ class HomeVC: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTableView)
 
+        fetchTrendingData()
         configureNavbar()
         homeFeedTableView.tableHeaderView = headerView
     }
@@ -38,6 +39,37 @@ class HomeVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTableView.frame = view.bounds
+    }
+    
+    private func fetchTrendingData() {
+//        NetworkManager.shared.getTrendingMovies { results in
+//            switch results {
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
+//        NetworkManager.shared.getTrendingTVs{ results in
+//            switch results {
+//            case .success(let tvShows):
+//                print(tvShows)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
+//
+        NetworkManager.shared.getTopRated{ results in
+            switch results {
+            case .success(let topRated):
+                print(topRated)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
     }
     
     func configureNavbar() {
@@ -85,7 +117,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         
         header.textLabel?.textColor = .label
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

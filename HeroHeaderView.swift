@@ -12,9 +12,10 @@ class HeroHeaderView: UIView {
     private lazy var playButton: UIButton = {
         let button  = UIButton()
         button.setTitle("Play", for: .normal)
-        button.layer.borderColor = UIColor.systemBackground.cgColor
+        button.layer.borderColor = UIColor.label.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -22,9 +23,10 @@ class HeroHeaderView: UIView {
     private lazy var downloadButton: UIButton = {
         let button  = UIButton()
         button.setTitle("Download", for: .normal)
-        button.layer.borderColor = UIColor.systemBackground.cgColor
+        button.layer.borderColor = UIColor.label.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
+        button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -19,11 +19,18 @@ class HomeVC: UIViewController {
         return tableView
     }()
     
+    private lazy var headerView: HeroHeaderView = {
+        let view = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width))
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
         layoutViews()
+        configureNavbar()
+        homeFeedTableView.tableHeaderView = headerView
     }
     
     func layoutViews() {
@@ -35,6 +42,19 @@ class HomeVC: UIViewController {
             homeFeedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             homeFeedTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func configureNavbar() {
+        var image = UIImage(named: "netflix_logo")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
+        ]
+        
+        navigationController?.navigationBar.tintColor = .white
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20E9A1427CA16840010594F /* HeroHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20E9A1327CA16840010594F /* HeroHeaderView.swift */; };
 		B21C00F927C6DEC4002E53FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C00F827C6DEC4002E53FC /* AppDelegate.swift */; };
 		B21C00FB27C6DEC4002E53FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C00FA27C6DEC4002E53FC /* SceneDelegate.swift */; };
 		B21C00FD27C6DEC4002E53FC /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C00FC27C6DEC4002E53FC /* MainTabBarVC.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B20E9A1327CA16840010594F /* HeroHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderView.swift; sourceTree = "<group>"; };
 		B21C00F527C6DEC4002E53FC /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21C00F827C6DEC4002E53FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B21C00FA27C6DEC4002E53FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		B21C00EC27C6DEC4002E53FC = {
 			isa = PBXGroup;
 			children = (
+				B20E9A1327CA16840010594F /* HeroHeaderView.swift */,
 				B21C00F727C6DEC4002E53FC /* Netflix Clone */,
 				B21C00F627C6DEC4002E53FC /* Products */,
 			);
@@ -169,6 +172,7 @@
 				B21C00FD27C6DEC4002E53FC /* MainTabBarVC.swift in Sources */,
 				B2CBAEE627C86A55006F3540 /* CollectionViewTableViewCell.swift in Sources */,
 				B2CBAEDC27C85F1B006F3540 /* HomeVC.swift in Sources */,
+				B20E9A1427CA16840010594F /* HeroHeaderView.swift in Sources */,
 				B21C00F927C6DEC4002E53FC /* AppDelegate.swift in Sources */,
 				B2CBAEE327C85FA9006F3540 /* DownloadsVC.swift in Sources */,
 				B2CBAEDF27C85F6C006F3540 /* UpcomingVC.swift in Sources */,

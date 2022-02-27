@@ -31,7 +31,6 @@ class HomeVC: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTableView)
 
-        fetchTrendingData()
         configureNavbar()
         homeFeedTableView.tableHeaderView = headerView
     }
@@ -41,36 +40,6 @@ class HomeVC: UIViewController {
         homeFeedTableView.frame = view.bounds
     }
     
-    private func fetchTrendingData() {
-//        NetworkManager.shared.getTrendingMovies { results in
-//            switch results {
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//
-//        NetworkManager.shared.getTrendingTVs{ results in
-//            switch results {
-//            case .success(let tvShows):
-//                print(tvShows)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//
-//
-        NetworkManager.shared.getTopRated{ results in
-            switch results {
-            case .success(let topRated):
-                print(topRated)
-            case .failure(let error):
-                print(error)
-            }
-        }
-
-    }
     
     func configureNavbar() {
         var image = UIImage(named: "netflix_logo")
@@ -99,7 +68,57 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as! CollectionViewTableViewCell
-        cell.textLabel?.text = "Hello world"
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            NetworkManager.shared.getTrendingMovies{ results in
+                switch results {
+                case .success(let movies):
+                    cell.configure(with: movies)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        case Sections.TrendingTv.rawValue:
+            NetworkManager.shared.getTrendingTVs { results in
+                switch results {
+                case .success(let tvs):
+                    cell.configure(with: tvs)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        case Sections.Popular.rawValue:
+            NetworkManager.shared.getPopular { results in
+                switch results {
+                case .success(let popular):
+                    cell.configure(with: popular)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.Upcoming.rawValue:
+            NetworkManager.shared.getUpcomingMovies { results in
+                switch results {
+                case .success(let upcoming):
+                    cell.configure(with: upcoming)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.TopRated.rawValue:
+            NetworkManager.shared.getTopRated { results in
+                switch results {
+                case .success(let topRated):
+                    cell.configure(with: topRated)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        default:
+            UITableViewCell()
+        }
         return cell
     }
     

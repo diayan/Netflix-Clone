@@ -30,7 +30,7 @@ class NetworkManager {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
-                print(result)
+                completed(.success(result.results ?? []))
             } catch {
                 print(error.localizedDescription)
             }
@@ -39,7 +39,7 @@ class NetworkManager {
     }
     
     
-    func getTrendingTVs(completed: @escaping (Result<[TrendingTVs], NFError>) -> Void) {
+    func getTrendingTVs(completed: @escaping (Result<[Movies], NFError>) -> Void) {
         guard let url = URL(string: "\(Constants.baseURL)3/trending/tv/day?api_key=\(Constants.API_KEY)") else { return }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
@@ -59,8 +59,8 @@ class NetworkManager {
             }
             
             do {
-                let result = try JSONDecoder().decode(APIResponse<TrendingTVs>.self, from: data)
-                print(result)
+                let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
+                completed(.success(result.results ?? []))
             } catch {
                 print(error.localizedDescription)
             }
@@ -90,7 +90,7 @@ class NetworkManager {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
-                print(result)
+                completed(.success(result.results ?? []))
             } catch {
                 print(error.localizedDescription)
             }
@@ -118,7 +118,7 @@ class NetworkManager {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
-                print(result)
+                completed(.success(result.results ?? []))
             } catch {
                 print(error.localizedDescription)
             }
@@ -146,7 +146,7 @@ class NetworkManager {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
-                print(result)
+                completed(.success(result.results ?? []))
             } catch {
                 print(error.localizedDescription)
             }

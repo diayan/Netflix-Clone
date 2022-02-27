@@ -57,37 +57,6 @@ struct Movies: Codable {
     }
 }
 
-struct TrendingTVs: Codable {
-    let genreIDS: [Int]?
-    let originalLanguage, name: String?
-    let voteAverage: Double?
-    let voteCount: Int?
-    let overview, posterPath, backdropPath: String?
-    let id: Int?
-    let originalName: String?
-    let originCountry: [String]?
-    let firstAirDate: String?
-    let popularity: Double?
-    let mediaType: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case genreIDS = "genre_ids"
-        case originalLanguage = "original_language"
-        case name
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
-        case overview
-        case posterPath = "poster_path"
-        case backdropPath = "backdrop_path"
-        case id
-        case originalName = "original_name"
-        case originCountry = "origin_country"
-        case firstAirDate = "first_air_date"
-        case popularity
-        case mediaType = "media_type"
-    }
-}
-
 enum MediaType: String, Codable {
     case movie = "movie"
     case tv = "tv"

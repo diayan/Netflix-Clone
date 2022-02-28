@@ -8,9 +8,9 @@
 import UIKit
 
 class SearchResultVC: UIViewController {
-    private var movies = [Movies]()
+    public var movies = [Movies]()
 
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3 - 10, height: 200)
@@ -39,13 +39,13 @@ class SearchResultVC: UIViewController {
 
 extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as! PosterCollectionViewCell
-        //cell.updatePoster(with: "")
-        cell.backgroundColor = .systemPink
+        let posterPath = movies[indexPath.row].posterPath ?? "Unknown"
+        cell.updatePoster(with: posterPath)
         return cell
     }
     

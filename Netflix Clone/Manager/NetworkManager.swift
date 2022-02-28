@@ -183,4 +183,33 @@ class NetworkManager {
         task.resume()
     }
     
+    
+    func searchMovie(query: String, completed: @escaping (Result<[Movies], NFError>) -> Void) {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let url = URL(string: "\(Constants.baseURL)3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)") else { return }
+
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
+                completed(.success(result.results ?? []))
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
 }

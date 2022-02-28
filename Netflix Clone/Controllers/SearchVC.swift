@@ -37,6 +37,7 @@ class SearchVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         fetchDiscoverMovies()
+        searchController.searchResultsUpdater = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,4 +75,30 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+}
+
+extension SearchVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        guard let query = searchBar.text,
+        !query.trimmingCharacters(in: .whitespaces).isEmpty,
+        query.trimmingCharacters(in: .whitespaces).count >= 3,
+        let resultController = searchController.searchResultsController as? SearchResultVC  else {
+            return
+        }
+        
+        NetworkManager.shared.searchMovie(query: query) { results in
+            switch results {
+            case .success(let searchResult):
+                resultController.movies = searchResult
+                DispatchQueue.main.async {
+                    resultController.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }

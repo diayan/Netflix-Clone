@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchVC: UIViewController {
+    
     private var movies = [Movies]()
     
     private lazy var tableView: UITableView = {
@@ -98,7 +99,7 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
 
 }
 
-extension SearchVC: UISearchResultsUpdating {
+extension SearchVC: UISearchResultsUpdating, SearchResultDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
@@ -108,6 +109,8 @@ extension SearchVC: UISearchResultsUpdating {
         let resultController = searchController.searchResultsController as? SearchResultVC  else {
             return
         }
+        
+        resultController.delegate = self
         
         NetworkManager.shared.searchMovie(query: query) { results in
             switch results {
@@ -122,4 +125,11 @@ extension SearchVC: UISearchResultsUpdating {
         }
     }
     
+    func searchResultDidTapItem(_ viewModel: MoviePreviewViewModel) {
+        DispatchQueue.main.async {
+            let vc = MovieTrailerPreviewVC()
+            vc.configure(with: viewModel)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

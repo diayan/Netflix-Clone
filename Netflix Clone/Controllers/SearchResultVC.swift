@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol SearchResultDelegate: AnyObject {
+    func searchResultDidTapItem(_ viewModel: MoviePreviewViewModel)
+}
+
 class SearchResultVC: UIViewController {
+    var delegate: SearchResultDelegate?
+    
     public var movies = [Movies]()
 
     lazy var collectionView: UICollectionView = {
@@ -49,5 +55,20 @@ extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let movie = movies[indexPath.row]
+        guard let movieName = movie.originalTitle ?? movie.originalName else { return }
+        
+        NetworkManager.shared.getMovie(with: movieName + " trailer") { result in
+            switch result {
+            case .success(let video):
+                self.delegate?.searchResultDidTapItem(MoviePreviewViewModel(title: movieName, youtubeView: video, titleOverview: movie.overview ?? ""))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
+
+

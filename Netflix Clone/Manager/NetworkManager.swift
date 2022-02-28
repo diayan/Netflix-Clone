@@ -155,4 +155,32 @@ class NetworkManager {
     }
     
     
+    func getDiscoverMovies(completed: @escaping (Result<[Movies], NFError>) -> Void) {
+        guard let url = URL(string: "\(Constants.baseURL)3/discover/movie?api_key=\(Constants.API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate") else { return }
+
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(APIResponse<Movies>.self, from: data)
+                completed(.success(result.results ?? []))
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+    
 }

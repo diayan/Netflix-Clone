@@ -30,7 +30,6 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTableView)
-
         configureNavbar()
         homeFeedTableView.tableHeaderView = headerView
     }

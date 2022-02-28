@@ -83,4 +83,9 @@ class HeroHeaderView: UIView {
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
     }
+    
+    public func configure(with model: PosterViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterUrl)") else {return}
+        headerImageView.sd_setImage(with: url, completed: nil)
+    }
 }

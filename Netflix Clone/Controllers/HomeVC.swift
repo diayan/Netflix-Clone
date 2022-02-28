@@ -9,6 +9,7 @@ import UIKit
 
 class HomeVC: UIViewController {
 
+    private var randomTrendingMovie: Movies?
     let sectionTitles: [String] = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     
     private lazy var homeFeedTableView: UITableView = {
@@ -31,6 +32,7 @@ class HomeVC: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTableView)
         configureNavbar()
+        configureHeroHeaderView()
         homeFeedTableView.tableHeaderView = headerView
     }
     
@@ -51,6 +53,20 @@ class HomeVC: UIViewController {
         ]
         
         navigationController?.navigationBar.tintColor = .white
+    }
+    
+    func configureHeroHeaderView() {
+        NetworkManager.shared.getTrendingMovies{ results in
+            switch results {
+            case .success(let movies):
+                self.randomTrendingMovie = movies.randomElement()
+                DispatchQueue.main.async {
+                    self.headerView.configure(with: PosterViewModel(titleName: self.randomTrendingMovie?.title ?? "Unknown", posterUrl: self.randomTrendingMovie?.posterPath ?? ""))
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

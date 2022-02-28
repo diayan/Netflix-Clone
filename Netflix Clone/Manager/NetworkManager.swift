@@ -212,4 +212,39 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    
+    func getMovie(with query: String, completed: @escaping (Result<VideoElement, NFError>) -> Void) {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let url = URL(string: "\(Constants.YouTubeBaseURL)q=\(query)&key=\(Constants.YouTube_API_KEY)") else { return }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+                        
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+            }
+
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            do {
+                
+                let result = try JSONDecoder().decode(YouTubeSearchResponse.self, from: data)
+                completed(.success(result.items[0]))
+                print(result)
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+        
+    }
 }

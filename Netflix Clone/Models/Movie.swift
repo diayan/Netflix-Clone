@@ -31,6 +31,7 @@ struct Movies: Codable {
     let posterPath: String?
     let voteAverage: Double?
     let voteCount: Int?
+    let overview: String?
     let popularity: Double?
     let mediaType: String?
     let originalTitle, releaseDate: String?
@@ -49,6 +50,7 @@ struct Movies: Codable {
         case posterPath = "poster_path"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case overview
         case popularity
         case mediaType = "media_type"
         case originalTitle = "original_title"

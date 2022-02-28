@@ -7,10 +7,15 @@
 
 import UIKit
 
-class CollectionViewTableViewCell: UITableViewCell {
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: MoviePreviewViewModel)
+}
 
+class CollectionViewTableViewCell: UITableViewCell {
     static let identifier = "CollectionViewTableViewCell"
     private var posters: [Movies] = [Movies]()
+    
+    weak var delegate: CollectionViewTableViewCellDelegate?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -68,8 +73,9 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         
         NetworkManager.shared.getMovie(with: posterName + " trailer") { result in
             switch result {
-            case .success(let videos):
-                print(videos.id)
+            case .success(let video):
+                let viewModel = MoviePreviewViewModel(title: posterName, youtubeView: video, titleOverview: poster.overview ?? "")
+                self.delegate?.collectionViewTableViewCellDidTapCell(self, viewModel: viewModel)
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -17,6 +17,9 @@ class UpcomingTableViewCell: UITableViewCell {
 //        button.layer.borderWidth = 1
 //        button.layer.cornerRadius = 5
  //       button.setTitleColor(.label, for: .normal)
+        let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+        button.setImage(image, for: .normal)
+        button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -25,6 +28,7 @@ class UpcomingTableViewCell: UITableViewCell {
     private lazy var comingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -45,6 +49,11 @@ class UpcomingTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func configure(with model: PosterViewModel)  {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterUrl)") else {return}
+        comingImageView.sd_setImage(with: url, completed: nil)
+        titleLabel.text = model.titleName
+    }
     
     func layoutViews() {
         contentView.addSubview(comingImageView)
@@ -53,9 +62,15 @@ class UpcomingTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             comingImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            comingImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            comingImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            comingImageView.widthAnchor.constraint(equalToConstant: 100)
+            comingImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            comingImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            comingImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: comingImageView.trailingAnchor, constant: 20),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
     

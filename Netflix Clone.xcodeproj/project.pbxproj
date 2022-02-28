@@ -22,6 +22,7 @@
 		B21C00FB27C6DEC4002E53FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C00FA27C6DEC4002E53FC /* SceneDelegate.swift */; };
 		B21C010227C6DEC6002E53FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21C010127C6DEC6002E53FC /* Assets.xcassets */; };
 		B21C010527C6DEC6002E53FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21C010327C6DEC6002E53FC /* LaunchScreen.storyboard */; };
+		B26C3A4B27CCEA17000F5581 /* PosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26C3A4A27CCEA17000F5581 /* PosterViewModel.swift */; };
 		B2CBAEDC27C85F1B006F3540 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CBAEDB27C85F1B006F3540 /* HomeVC.swift */; };
 		B2CBAEDF27C85F6C006F3540 /* UpcomingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CBAEDE27C85F6C006F3540 /* UpcomingVC.swift */; };
 		B2CBAEE127C85F8C006F3540 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CBAEE027C85F8C006F3540 /* SearchVC.swift */; };
@@ -45,6 +46,7 @@
 		B21C010127C6DEC6002E53FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B21C010427C6DEC6002E53FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B21C010627C6DEC6002E53FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B26C3A4A27CCEA17000F5581 /* PosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewModel.swift; sourceTree = "<group>"; };
 		B2CBAEDB27C85F1B006F3540 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B2CBAEDE27C85F6C006F3540 /* UpcomingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingVC.swift; sourceTree = "<group>"; };
 		B2CBAEE027C85F8C006F3540 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				B213284727CADD0B001B3871 /* Extensions */,
 				B213284427CAD4CE001B3871 /* Models */,
 				B20E9A1B27CA315F0010594F /* Utilities */,
+				B26C3A4C27CCEA30000F5581 /* ViewModels */,
 				B20E9A1A27CA30F50010594F /* Manager */,
 				B20E9A1527CA2F7F0010594F /* Views */,
 				B2CBAEDD27C85F28006F3540 /* Controllers */,
@@ -139,6 +142,14 @@
 				B21C010627C6DEC6002E53FC /* Info.plist */,
 			);
 			path = "Netflix Clone";
+			sourceTree = "<group>";
+		};
+		B26C3A4C27CCEA30000F5581 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B26C3A4A27CCEA17000F5581 /* PosterViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B2CBAEDD27C85F28006F3540 /* Controllers */ = {
@@ -249,6 +260,7 @@
 				B20E9A1727CA2FA10010594F /* NetworkManager.swift in Sources */,
 				B20E9A1427CA16840010594F /* HeroHeaderView.swift in Sources */,
 				B21C00F927C6DEC4002E53FC /* AppDelegate.swift in Sources */,
+				B26C3A4B27CCEA17000F5581 /* PosterViewModel.swift in Sources */,
 				B2CBAEE327C85FA9006F3540 /* DownloadsVC.swift in Sources */,
 				B2CBAEDF27C85F6C006F3540 /* UpcomingVC.swift in Sources */,
 				B20E9A1927CA2FE90010594F /* Constants.swift in Sources */,

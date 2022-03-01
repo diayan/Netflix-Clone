@@ -59,4 +59,18 @@ class DataPersistenceManager {
         }
                             
     }
+    
+    func deleteCoreDataItem(model: MovieItem, completion: @escaping (Result<Void, NFError>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        context.delete(model) //database manager should delete
+        
+        do {
+            try context.save()
+            completion(.success(()))
+        } catch {
+            completion(.failure(.failedToDeleteData))
+        }
+    }
 }

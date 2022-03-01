@@ -13,5 +13,6 @@ enum NFError: String, Error{
     case invalidData      = "The data received from the server was invalid. Please try again"
     case failedToSaveData = "Failed to save data"
     case failedToFetchData = "Failed to fetch data at this moment"
+    case failedToDeleteData = "Failed to delete at this moment"
 }
 

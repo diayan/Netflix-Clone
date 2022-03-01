@@ -68,4 +68,22 @@ extension DownloadsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            DataPersistenceManager.shared.deleteCoreDataItem(model: movies[indexPath.row]) { result in
+                switch result {
+                case .success(()):
+                    print("deleted from db")
+                case .failure(let error):
+                    print(error)
+                }
+                self.movies.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        default:
+            print("some shit")
+        }
+    }
 }

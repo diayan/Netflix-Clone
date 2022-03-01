@@ -12,14 +12,10 @@ class UpcomingTableViewCell: UITableViewCell {
     
     private lazy var button: UIButton = {
         let button  = UIButton()
- //       button.setTitle("Play", for: .normal)
-//        button.layer.borderColor = UIColor.label.cgColor
-//        button.layer.borderWidth = 1
-//        button.layer.cornerRadius = 5
- //       button.setTitleColor(.label, for: .normal)
         let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         button.setImage(image, for: .normal)
         button.tintColor = .label
+        button.isUserInteractionEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

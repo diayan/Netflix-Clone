@@ -86,4 +86,24 @@ extension DownloadsVC: UITableViewDelegate, UITableViewDataSource {
             print("some shit")
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let movie = movies[indexPath.row]
+        guard let movieName = movie.originalTitle ?? movie.originalName else { return }
+        
+        NetworkManager.shared.getMovie(with: movieName + " trailer") { result in
+            switch result {
+            case .success(let video):
+                DispatchQueue.main.async {
+                    let vc = MovieTrailerPreviewVC()
+                    vc.configure(with: MoviePreviewViewModel(title: movieName, youtubeView: video, titleOverview: movie.overview ?? ""))
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

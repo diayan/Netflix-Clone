@@ -45,4 +45,18 @@ class DataPersistenceManager {
             print(error.localizedDescription)
         }
     }
+    
+    func fetchFromCoreData(completion: @escaping (Result<[MovieItem], NFError>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        let request: NSFetchRequest<MovieItem> = MovieItem.fetchRequest()
+        
+        do {
+            let movies = try context.fetch(request)
+            completion(.success(movies))
+        }catch {
+            completion(.failure(.failedToFetchData))
+        }
+                            
+    }
 }

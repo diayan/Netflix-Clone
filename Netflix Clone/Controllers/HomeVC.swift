@@ -23,7 +23,7 @@ class HomeVC: UIViewController {
     }()
     
     private lazy var headerView: HeroHeaderView = {
-        let view = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width))
+        let view = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 520))
         return view
     }()
     

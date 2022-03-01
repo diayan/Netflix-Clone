@@ -24,8 +24,6 @@ struct Movies: Codable {
     let name: String?
     let backdropPath: String?
     let firstAirDate: String?
-    let genreIDS: [Int]?
-    let originCountry: [String]?
     let originalLanguage: String?
     let originalName: String?
     let posterPath: String?
@@ -34,7 +32,8 @@ struct Movies: Codable {
     let overview: String?
     let popularity: Double?
     let mediaType: String?
-    let originalTitle, releaseDate: String?
+    let originalTitle: String
+    let releaseDate: String?
     let video: Bool?
     let title: String?
     let adult: Bool?
@@ -42,9 +41,7 @@ struct Movies: Codable {
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"
         case firstAirDate = "first_air_date"
-        case genreIDS = "genre_ids"
         case id, name
-        case originCountry = "origin_country"
         case originalLanguage = "original_language"
         case originalName = "original_name"
         case posterPath = "poster_path"
@@ -57,18 +54,6 @@ struct Movies: Codable {
         case releaseDate = "release_date"
         case video, title, adult
     }
-}
-
-enum MediaType: String, Codable {
-    case movie = "movie"
-    case tv = "tv"
-}
-
-enum OriginalLanguage: String, Codable {
-    case en = "en"
-    case fr = "fr"
-    case ko = "ko"
-    case tr = "tr"
 }
 
 

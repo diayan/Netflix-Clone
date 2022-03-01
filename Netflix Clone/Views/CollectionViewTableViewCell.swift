@@ -51,7 +51,14 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     private func downloadMovie(at indexPath: IndexPath) {
-        print("downloading \(posters[indexPath.row].originalTitle)")
+        DataPersistenceManager.shared.downloadMovie(movie: posters[indexPath.row]) { result in
+            switch result {
+            case .success(()):
+                print("downloaded to db")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

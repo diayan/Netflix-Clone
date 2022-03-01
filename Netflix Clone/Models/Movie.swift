@@ -32,7 +32,7 @@ struct Movies: Codable {
     let overview: String?
     let popularity: Double?
     let mediaType: String?
-    let originalTitle: String
+    let originalTitle: String?
     let releaseDate: String?
     let video: Bool?
     let title: String?

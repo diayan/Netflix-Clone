@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B2070C4C27DB733700BF91A5 /* Netflix_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2070C4B27DB733700BF91A5 /* Netflix_CloneTests.swift */; };
+		B2070C5327DB74B600BF91A5 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2070C5227DB74B600BF91A5 /* TestingAppDelegate.swift */; };
 		B20E9A1427CA16840010594F /* HeroHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20E9A1327CA16840010594F /* HeroHeaderView.swift */; };
 		B20E9A1727CA2FA10010594F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20E9A1627CA2FA10010594F /* NetworkManager.swift */; };
 		B20E9A1927CA2FE90010594F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20E9A1827CA2FE90010594F /* Constants.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		B2070C4927DB733700BF91A5 /* Netflix CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netflix CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2070C4B27DB733700BF91A5 /* Netflix_CloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netflix_CloneTests.swift; sourceTree = "<group>"; };
+		B2070C5227DB74B600BF91A5 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		B20E9A1327CA16840010594F /* HeroHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderView.swift; sourceTree = "<group>"; };
 		B20E9A1627CA2FA10010594F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B20E9A1827CA2FE90010594F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				B2CBAEE427C865BD006F3540 /* Support */,
 				B21C010627C6DEC6002E53FC /* Info.plist */,
 				B2B6A17B27CE0D0900EBAD8C /* NetflixModel.xcdatamodeld */,
+				B2070C5227DB74B600BF91A5 /* TestingAppDelegate.swift */,
 			);
 			path = "Netflix Clone";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				B21C00FB27C6DEC4002E53FC /* SceneDelegate.swift in Sources */,
 				B26C3A5227CD39ED000F5581 /* MovieTrailerPreviewVC.swift in Sources */,
 				B213284927CAF408001B3871 /* PosterCollectionViewCell.swift in Sources */,
+				B2070C5327DB74B600BF91A5 /* TestingAppDelegate.swift in Sources */,
 				B213284327CAD463001B3871 /* NFError.swift in Sources */,
 				B213284627CADD05001B3871 /* Extensions.swift in Sources */,
 			);
